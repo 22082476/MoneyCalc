@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./WorkTimeTracker.css"
+import "./WorkTimeTracker.css";
 
 const WorkTimeTracker = () => {
   const [schema, setSchema] = useState(null);
@@ -51,36 +51,57 @@ const WorkTimeTracker = () => {
 
   const calculateOvertime = (day) => {
     const actualTime = actualTimes[day];
-    const [startHour, startMinute] = actualTime.startTime.split(":").map(Number);
-    const [endHour, endMinute] = actualTime.endTime.split(":").map(Number);
-    const startMinutes = startHour * 60 + startMinute;
-    const endMinutes = endHour * 60 + endMinute;
-    let totalMinutes = endMinutes - startMinutes;
+  
+    // Controleer of actualTime en actualTime.startTime gedefinieerd zijn voordat je ze gebruikt
+    if (actualTime && actualTime.startTime) {
+      const [startHour, startMinute] = actualTime.startTime.split(":").map(Number);
+      const [endHour, endMinute] = actualTime.endTime.split(":").map(Number);
+      const startMinutes = startHour * 60 + startMinute;
+      const endMinutes = endHour * 60 + endMinute;
+      let totalMinutes = endMinutes - startMinutes;
 
-    if (actualTime.hasBreak) {
-      totalMinutes -= 30; // Assuming a break of 30 minutes
+      if (actualTime.hasBreak) {
+        totalMinutes -= 30; // Assuming a break of 30 minutes
+      }
+
+      const schemaTimes = schema[day].map(time => {
+        const [hour, minute] = time.split(":").map(Number);
+        return hour * 60 + minute;
+      });
+
+      const schemaWorkTime = schemaTimes[1] - schemaTimes[0];
+
+      const overtimeMinutes = Math.max(totalMinutes - schemaWorkTime, 0);
+
+      setOvertimeResults((prevResults) => ({
+        ...prevResults,
+        [day]: overtimeMinutes > 0 ? `Overtime: ${overtimeMinutes} minutes` : "No overtime"
+      }));
+    } else {
+      // Handle the case where actualTime or actualTime.startTime is undefined
+      console.error("Actual start time is not defined for day", day);
     }
+  };
 
-    const schemaTimes = schema[day].map(time => {
-      const [hour, minute] = time.split(":").map(Number);
-      return hour * 60 + minute;
+  const resetTime = () => {
+    setActualTimes({
+      mon: { startTime: "", endTime: "", hasBreak: false },
+      tue: { startTime: "", endTime: "", hasBreak: false },
+      wed: { startTime: "", endTime: "", hasBreak: false },
+      thu: { startTime: "", endTime: "", hasBreak: false },
+      fri: { startTime: "", endTime: "", hasBreak: false },
+      sat: { startTime: "", endTime: "", hasBreak: false }
     });
 
-    const schemaWorkTime = schemaTimes[1] - schemaTimes[0];
-
-    const overtimeMinutes = Math.max(totalMinutes - schemaWorkTime, 0);
-
-    setOvertimeResults((prevResults) => ({
-      ...prevResults,
-      [day]: overtimeMinutes > 0 ? `Overtime: ${overtimeMinutes} minutes` : "No overtime"
-    }));
+    // Reset ook de overurenresultaten
+    setOvertimeResults({});
   };
 
   return (
     <div id="main-div">
       <div>
-      <h2>Work Time Tracker</h2>
-      <input type="file" accept=".json" onChange={handleFileRead} />
+        <h2>Work Time Tracker</h2>
+        <input type="file" accept=".json" onChange={handleFileRead} />
       </div>
       {schema && (
         <div>
@@ -118,12 +139,17 @@ const WorkTimeTracker = () => {
                     </label>
                   </div>
                   <div>
-                    <button  className="button" onClick={() => calculateOvertime(day)}>Calculate Overtime</button>
-                    {overtimeResults[day] && <p className="result-text">{overtimeResults[day]}</p>}
+                    <button className="button" onClick={() => calculateOvertime(day)}>Calculate Overtime</button>
+                    {overtimeResults[day] ? (<p className="result-text">{overtimeResults[day]}</p>) : (<p className="result-text">Not Calculated</p>)}
                   </div>
                 </li>
               );
             })}
+            <li>
+              <button style={{width: "10vw"}} className="button" onClick={() => resetTime()}>
+                Time reset
+              </button>
+            </li>
           </ul>
         </div>
       )}

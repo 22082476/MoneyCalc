@@ -1,22 +1,23 @@
 #main-div
 {
     display: flex;
-    height: 140vh;
-    justify-content: center;
+    height: 230vh;
+    justify-content: flex-start;
     align-items: center;
     flex-flow: column;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
 }
+
 #home
 {
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
 }
+
 ul
 {
     margin: 0;
-    padding: 10px;
-    width: 22vw;
+    padding: 10px 30px 10px 30px;
+    width: 25vw;
     background-color: #FFF;
     border-radius: 20px;
 }
@@ -66,14 +67,14 @@ input[type=file]::file-selector-button
     padding: 15px;
     border-radius: 25px;
     border: solid transparent 2px;
+    font-size: small;
+    font-weight: bold;
 }
 
 input[type=file]::file-selector-button:hover
 {
     border: solid black 2px;
-
 }
-
 
 .button:hover
 {
