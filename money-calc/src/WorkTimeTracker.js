@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./WorkTimeTracker.css"
 
 const WorkTimeTracker = () => {
   const [schema, setSchema] = useState(null);
@@ -76,10 +77,11 @@ const WorkTimeTracker = () => {
   };
 
   return (
-    <div>
+    <div id="main-div">
+      <div>
       <h2>Work Time Tracker</h2>
       <input type="file" accept=".json" onChange={handleFileRead} />
-
+      </div>
       {schema && (
         <div>
           <h3>Schedule</h3>
@@ -88,17 +90,17 @@ const WorkTimeTracker = () => {
               const actualTime = actualTimes[day] || {};
               return (
                 <li key={day}>
-                  {day}: {times.join(" - ")}
-                  <div>
-                    <label>Start Time:</label>
+                  <div id="schedule">{day}: {times.join(" - ")}</div>
+                  <div className="selection">
+                    <label className="label">Start Time:</label>
                     <input
                       type="time"
                       value={actualTime.startTime}
                       onChange={(e) => handleActualTimeChange(day, "startTime", e.target.value)}
                     />
                   </div>
-                  <div>
-                    <label>End Time:</label>
+                  <div className="selection">
+                    <label className="label">End Time:</label>
                     <input
                       type="time"
                       value={actualTime.endTime}
@@ -116,8 +118,8 @@ const WorkTimeTracker = () => {
                     </label>
                   </div>
                   <div>
-                    <button onClick={() => calculateOvertime(day)}>Calculate Overtime</button>
-                    {overtimeResults[day] && <p>{overtimeResults[day]}</p>}
+                    <button  className="button" onClick={() => calculateOvertime(day)}>Calculate Overtime</button>
+                    {overtimeResults[day] && <p className="result-text">{overtimeResults[day]}</p>}
                   </div>
                 </li>
               );

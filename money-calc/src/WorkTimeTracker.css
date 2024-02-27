@@ -1,0 +1,87 @@
+#main-div
+{
+    display: flex;
+    height: 140vh;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+#home
+{
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+}
+ul
+{
+    margin: 0;
+    padding: 10px;
+    width: 22vw;
+    background-color: #FFF;
+    border-radius: 20px;
+}
+
+li
+{
+    list-style: none;
+    padding: 10px;
+    
+}
+
+.label
+{
+    padding-right: 35px;
+    
+}
+
+#schedule
+{
+    font-weight: bold;
+    font-size: larger;
+}
+
+.selection
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.button
+{
+    background-color: rgb(67, 185, 166);
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 25px;
+    border: solid 3px rgb(255, 255, 255);    
+    color: black;
+    font-size: small;
+    font-weight: bold;
+    margin-left: 6vw;
+}
+
+input[type=file]::file-selector-button
+{
+    background-color: rgb(67, 185, 166);
+    padding: 15px;
+    border-radius: 25px;
+    border: solid transparent 2px;
+}
+
+input[type=file]::file-selector-button:hover
+{
+    border: solid black 2px;
+
+}
+
+
+.button:hover
+{
+    border:solid  3px;
+}
+
+.result-text
+{
+    color: rgb(67, 185, 166);
+    font-weight: bold;
+}
