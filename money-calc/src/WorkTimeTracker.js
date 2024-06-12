@@ -99,6 +99,7 @@ const WorkTimeTracker = () => {
 
   return (
     <div id="main-div">
+      <h1>MoneyCalc</h1>
       <div>
         <h2>Work Time Tracker</h2>
         <input type="file" accept=".json" onChange={handleFileRead} />

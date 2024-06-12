@@ -10,7 +10,7 @@
 
 #home
 {
-    background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    background: linear-gradient(90deg, rgb(67, 185, 166) 10%, rgb(88, 88, 88) 100%);
 }
 
 ul
@@ -50,10 +50,10 @@ li
 
 .button
 {
-    background-color: rgb(67, 185, 166);
-    padding: 15px;
+    background-color: rgb(182, 182, 182);
+    padding: 15px 20px 15px 20px;
     margin-top: 10px;
-    border-radius: 25px;
+    border-radius: 20px 0 20px 0;
     border: solid 3px rgb(255, 255, 255);    
     color: black;
     font-size: small;
@@ -63,22 +63,21 @@ li
 
 input[type=file]::file-selector-button
 {
-    background-color: rgb(67, 185, 166);
+    background-color: rgb(182, 182, 182);
     padding: 15px;
-    border-radius: 25px;
+    border-radius: 20px 0 20px 0;
     border: solid transparent 2px;
     font-size: small;
     font-weight: bold;
 }
 
-input[type=file]::file-selector-button:hover
+.button:hover, input[type=file]::file-selector-button:hover
 {
-    border: solid black 2px;
-}
-
-.button:hover
-{
-    border:solid  3px;
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(21, 7, 7);
+    border-radius: 20px 15px 20px 15px;
+    transition: border-radius 0.3s ease;
 }
 
 .result-text
