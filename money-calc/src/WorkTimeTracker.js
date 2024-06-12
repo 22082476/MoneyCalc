@@ -146,7 +146,7 @@ const WorkTimeTracker = () => {
               );
             })}
             <li>
-              <button style={{width: "10vw"}} className="button" onClick={() => resetTime()}>
+              <button style={{width: "10vw", backgroundColor: "#FFF"}} className="button" onClick={() => resetTime()}>
                 Time reset
               </button>
             </li>
