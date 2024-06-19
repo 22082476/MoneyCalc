@@ -17,7 +17,13 @@ const FileReaderComponent = (props) => {
       }
     };
 
-    reader.readAsText(file);
+    if(file === undefined || typeof file !== 'Blob')
+    {
+      console.error("No file selected")
+    } else
+    {
+      reader.readAsText(file);
+    }
     sessionStorage.setItem("schedule", jsonData)
   };
 

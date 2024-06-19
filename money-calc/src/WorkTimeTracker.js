@@ -20,7 +20,9 @@ const WorkTimeTracker = () => {
     reader.onload = (e) => {
       try {
         const data = JSON.parse(e.target.result);
-        setSchema(data.schedule);
+        if (data.schedule !== null) {
+          setSchema(data.schedule);
+        }
       } catch (error) {
         console.error("Error parsing JSON file:", error);
       }
@@ -75,7 +77,7 @@ const WorkTimeTracker = () => {
 
       setOvertimeResults((prevResults) => ({
         ...prevResults,
-        [day]: overtimeMinutes > 0 ? `Overtime: ${overtimeMinutes} minutes` : "No overtime"
+        [day]: overtimeMinutes > 0 ? `Overtime ${day} : ${overtimeMinutes} minutes` : "No overtime"
       }));
     } else {
       // Handle the case where actualTime or actualTime.startTime is undefined
@@ -102,7 +104,7 @@ const WorkTimeTracker = () => {
       <h1>MoneyCalc</h1>
       <div>
         <h2>Work Time Tracker</h2>
-        <input type="file" accept=".json" onChange={handleFileRead} />
+        <input type="file" accept=".json" onChange={handleFileRead}/>
       </div>
       {schema && (
         <div>
@@ -115,7 +117,7 @@ const WorkTimeTracker = () => {
                   <div id="schedule">{day}: {times.join(" - ")}</div>
                   <div className="selection">
                     <label className="label">Start Time:</label>
-                    <input
+                    <input className="time-input"
                       type="time"
                       value={actualTime.startTime}
                       onChange={(e) => handleActualTimeChange(day, "startTime", e.target.value)}
@@ -123,33 +125,37 @@ const WorkTimeTracker = () => {
                   </div>
                   <div className="selection">
                     <label className="label">End Time:</label>
-                    <input
+                    <input className="time-input"
                       type="time"
                       value={actualTime.endTime}
                       onChange={(e) => handleActualTimeChange(day, "endTime", e.target.value)}
                     />
                   </div>
-                  <div>
-                    <label>
-                      <input
+                  <div className="break-checkbox">
+                    <label className="checkbox-label">
+                      <input className="checkbox"
                         type="checkbox"
                         checked={actualTime.hasBreak}
                         onChange={(e) => handleBreakChange(day, e.target.checked)}
                       />
-                      &nbsp;Has Break
+                      Has Break
                     </label>
                   </div>
-                  <div>
+                  <div className="calculatebutton-div">
                     <button className="button" onClick={() => calculateOvertime(day)}>Calculate Overtime</button>
-                    {overtimeResults[day] ? (<p className="result-text">{overtimeResults[day]}</p>) : (<p className="result-text">Not Calculated</p>)}
+                  </div>
+                  <div>
+                    {overtimeResults[day] ? (<p className="result-text">{overtimeResults[day]}</p>) : (<p className="result-text">{day} not calculated</p>)}
                   </div>
                 </li>
               );
             })}
             <li>
-              <button style={{width: "10vw", backgroundColor: "#FFF"}} className="button" onClick={() => resetTime()}>
-                Time reset
-              </button>
+              <div className="restbutton-div">
+                <button style={{width: "10vw", backgroundColor: "#FFF"}} className="button" onClick={() => resetTime()}>
+                  Time reset
+                </button>
+              </div>
             </li>
           </ul>
         </div>
