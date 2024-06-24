@@ -108,7 +108,7 @@ const WorkTimeTracker = () => {
       </div>
       {schema && (
         <div>
-          <h3>Schedule</h3>
+          <h3>Rooster</h3>
           <ul>
             {Object.entries(schema).map(([day, times]) => {
               const actualTime = actualTimes[day] || {};
