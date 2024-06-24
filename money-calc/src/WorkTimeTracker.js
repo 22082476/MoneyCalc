@@ -77,7 +77,7 @@ const WorkTimeTracker = () => {
 
       setOvertimeResults((prevResults) => ({
         ...prevResults,
-        [day]: overtimeMinutes > 0 ? `Overtime ${day} : ${overtimeMinutes} minutes` : "No overtime"
+        [day]: overtimeMinutes > 0 ? `Overtime ${day} : ${overtimeMinutes / 60} hour` : "No overtime"
       }));
     } else {
       // Handle the case where actualTime or actualTime.startTime is undefined
@@ -145,6 +145,7 @@ const WorkTimeTracker = () => {
                     <button className="button" onClick={() => calculateOvertime(day)}>Calculate Overtime</button>
                   </div>
                   <div>
+                    {console.log(overtimeResults)}
                     {overtimeResults[day] ? (<p className="result-text">{overtimeResults[day]}</p>) : (<p className="result-text">{day} not calculated</p>)}
                   </div>
                 </li>
