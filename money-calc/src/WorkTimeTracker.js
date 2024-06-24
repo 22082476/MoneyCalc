@@ -87,12 +87,12 @@ const WorkTimeTracker = () => {
 
   const resetTime = () => {
     setActualTimes({
-      mon: { startTime: "", endTime: "", hasBreak: false },
-      tue: { startTime: "", endTime: "", hasBreak: false },
-      wed: { startTime: "", endTime: "", hasBreak: false },
-      thu: { startTime: "", endTime: "", hasBreak: false },
-      fri: { startTime: "", endTime: "", hasBreak: false },
-      sat: { startTime: "", endTime: "", hasBreak: false }
+      Monday: { startTime: "", endTime: "", hasBreak: false },
+      Tuesday: { startTime: "", endTime: "", hasBreak: false },
+      Wensday: { startTime: "", endTime: "", hasBreak: false },
+      Thursday: { startTime: "", endTime: "", hasBreak: false },
+      Friday: { startTime: "", endTime: "", hasBreak: false },
+      Saturday: { startTime: "", endTime: "", hasBreak: false }
     });
 
     // Reset ook de overurenresultaten
