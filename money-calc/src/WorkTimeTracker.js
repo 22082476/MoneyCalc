@@ -77,7 +77,7 @@ const WorkTimeTracker = () => {
 
       setOvertimeResults((prevResults) => ({
         ...prevResults,
-        [day]: overtimeMinutes > 0 ? `Overtime ${day} : ${overtimeMinutes / 60} hour` : "No overtime"
+        [day]: overtimeMinutes > 0 ? `Overuren ${day} : ${overtimeMinutes / 60} uur` : "Geen overuren"
       }));
     } else {
       // Handle the case where actualTime or actualTime.startTime is undefined
@@ -87,12 +87,12 @@ const WorkTimeTracker = () => {
 
   const resetTime = () => {
     setActualTimes({
-      Monday: { startTime: "", endTime: "", hasBreak: false },
-      Tuesday: { startTime: "", endTime: "", hasBreak: false },
-      Wensday: { startTime: "", endTime: "", hasBreak: false },
-      Thursday: { startTime: "", endTime: "", hasBreak: false },
-      Friday: { startTime: "", endTime: "", hasBreak: false },
-      Saturday: { startTime: "", endTime: "", hasBreak: false }
+      Maandag: { startTime: "", endTime: "", hasBreak: false },
+      Dinsdag: { startTime: "", endTime: "", hasBreak: false },
+      Woensdag: { startTime: "", endTime: "", hasBreak: false },
+      Donderdag: { startTime: "", endTime: "", hasBreak: false },
+      Vrijdag: { startTime: "", endTime: "", hasBreak: false },
+      Zaterdag: { startTime: "", endTime: "", hasBreak: false }
     });
 
     // Reset ook de overurenresultaten
@@ -116,7 +116,7 @@ const WorkTimeTracker = () => {
                 <li key={day}>
                   <div id="schedule">{day}: {times.join(" - ")}</div>
                   <div className="selection">
-                    <label className="label">Start Time:</label>
+                    <label className="label">Begin Tijd:</label>
                     <input className="time-input"
                       type="time"
                       value={actualTime.startTime}
@@ -124,7 +124,7 @@ const WorkTimeTracker = () => {
                     />
                   </div>
                   <div className="selection">
-                    <label className="label">End Time:</label>
+                    <label className="label">Eind Tijd:</label>
                     <input className="time-input"
                       type="time"
                       value={actualTime.endTime}
@@ -138,15 +138,15 @@ const WorkTimeTracker = () => {
                         checked={actualTime.hasBreak}
                         onChange={(e) => handleBreakChange(day, e.target.checked)}
                       />
-                      Has Break
+                      Heeft pauze
                     </label>
                   </div>
                   <div className="calculatebutton-div">
-                    <button className="button" onClick={() => calculateOvertime(day)}>Calculate Overtime</button>
+                    <button className="button" onClick={() => calculateOvertime(day)}>Overuren berekenen</button>
                   </div>
                   <div>
                     {console.log(overtimeResults)}
-                    {overtimeResults[day] ? (<p className="result-text">{overtimeResults[day]}</p>) : (<p className="result-text">{day} not calculated</p>)}
+                    {overtimeResults[day] ? (<p className="result-text">{overtimeResults[day]}</p>) : (<p className="result-text">{day} niet berekend</p>)}
                   </div>
                 </li>
               );
@@ -154,7 +154,7 @@ const WorkTimeTracker = () => {
             <li>
               <div className="restbutton-div">
                 <button style={{width: "10vw", backgroundColor: "#FFF"}} className="button" onClick={() => resetTime()}>
-                  Time reset
+                  Tijd Resetten
                 </button>
               </div>
             </li>
