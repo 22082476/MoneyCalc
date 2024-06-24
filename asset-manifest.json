@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/MoneyCalc/static/css/main.7dc46054.css",
-    "main.js": "/MoneyCalc/static/js/main.2f678168.js",
+    "main.js": "/MoneyCalc/static/js/main.ac35060f.js",
     "static/js/453.bd770cb6.chunk.js": "/MoneyCalc/static/js/453.bd770cb6.chunk.js",
     "index.html": "/MoneyCalc/index.html",
     "main.7dc46054.css.map": "/MoneyCalc/static/css/main.7dc46054.css.map",
-    "main.2f678168.js.map": "/MoneyCalc/static/js/main.2f678168.js.map",
+    "main.ac35060f.js.map": "/MoneyCalc/static/js/main.ac35060f.js.map",
     "453.bd770cb6.chunk.js.map": "/MoneyCalc/static/js/453.bd770cb6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7dc46054.css",
-    "static/js/main.2f678168.js"
+    "static/js/main.ac35060f.js"
   ]
 }
